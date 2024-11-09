@@ -1,31 +1,57 @@
 // src/components/ChatInterface.tsx
 import React, { useState } from 'react';
-import { API } from 'aws-amplify';
-import { Message } from '../types';
+import styled from '@emotion/styled';
 import { MessageList } from './MessageList';
 import { MessageInput } from './MessageInput';
 
-export const ChatInterface: React.FC = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+const ChatContainer = styled.div`
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+`;
 
-  const sendMessage = async (content: string) => {
-    setIsLoading(true);
-    try {
-      const response = await API.post('chatApi', '/chat', {
-        body: { message: content }
-      });
-      setMessages([...messages, response]);
-    } catch (error) {
-      console.error('Error sending message:', error);
+const MessagesArea = styled.div`
+  flex: 1;
+  padding: 20px;
+  background: #fff;
+  overflow-y: auto;
+  min-height: 300px;
+`;
+
+export const ChatInterface = () => {
+  console.log('ChatInterface rendering'); // Debug log
+
+  const [messages, setMessages] = useState([
+    // Test message to verify rendering
+    {
+      id: '1',
+      content: 'Hello! How can I help you today?',
+      timestamp: new Date().toISOString(),
+      sender: 'ai'
     }
-    setIsLoading(false);
+  ]);
+
+  const handleSendMessage = (content: string) => {
+    console.log('Sending message:', content); // Debug log
+    const newMessage = {
+      id: Date.now().toString(),
+      content,
+      timestamp: new Date().toISOString(),
+      sender: 'user'
+    };
+    setMessages([...messages, newMessage]);
   };
 
   return (
-    <div className="chat-container">
-      <MessageList messages={messages} />
-      <MessageInput onSend={sendMessage} isLoading={isLoading} />
-    </div>
+    <ChatContainer>
+      <MessagesArea>
+        <MessageList messages={messages} />
+      </MessagesArea>
+      <MessageInput onSend={handleSendMessage} />
+    </ChatContainer>
   );
 };

@@ -1,14 +1,21 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
-import "./index.css";
-import { Amplify } from "aws-amplify";
-import outputs from "../amplify_outputs.json";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
 
-Amplify.configure(outputs);
+console.log('Main.tsx loading...')
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+const rootElement = document.getElementById('root')
+if (!rootElement) {
+  console.error('Root element not found')
+  throw new Error('Root element not found')
+}
+
+console.log('Creating React root...')
+
+const apiUrl = import.meta.env.VITE_API_URL;
+
+ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
-);
+)
