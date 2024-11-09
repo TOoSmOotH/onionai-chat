@@ -11,6 +11,19 @@ declare module '@emotion/react' {
       inputBg: string;
       buttonText: string;
     };
+    layout: {
+      maxWidth: string;
+      padding: string;
+      headerHeight: string;
+      footerHeight: string;
+    };
+    spacing: {
+      xs: string;
+      sm: string;
+      md: string;
+      lg: string;
+      xl: string;
+    };
     isDark: boolean;
   }
 }

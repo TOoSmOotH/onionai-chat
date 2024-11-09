@@ -6,9 +6,12 @@ import styled from '@emotion/styled';
 import { Global } from '@emotion/react';
 import { ThemeProvider } from './context/ThemeContext';
 import { globalStyles } from './styles/GlobalStyles';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+import { Container } from './styles/shared';
 
-const Container = styled.div`
-  background: ${({ theme }) => theme.colors.surface};
+const Content = styled.main`
+  flex: 1;
 `;
 
 Amplify.configure(amplifyconfiguration);
@@ -18,7 +21,9 @@ function App() {
     <ThemeProvider>
       <Global styles={globalStyles} />
       <Container>
+        <Header />
         <ChatInterface />
+        <Footer />
       </Container>
     </ThemeProvider>
   );

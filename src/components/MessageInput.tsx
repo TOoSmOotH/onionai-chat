@@ -53,11 +53,19 @@ export const MessageInput: React.FC<Props> = ({ onSend, disabled }) => {
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
+
   return (
     <InputWrapper>
       <Input
         value={message}
         onChange={(e) => setMessage(e.target.value)}
+        onKeyPress={handleKeyPress}
         placeholder="Type a message..."
         disabled={disabled}
       />

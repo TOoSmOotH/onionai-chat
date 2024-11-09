@@ -6,23 +6,29 @@ import { Message } from '../types';
 const MessageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: ${({ theme }) => theme.spacing.md};
+`;
+
+const MessageWrapper = styled.div<{ isUser: boolean }>`
+  display: flex;
+  justify-content: ${({ isUser }) => isUser ? 'flex-end' : 'flex-start'};
+  width: 100%;
 `;
 
 const MessageBubble = styled.div<{ isUser: boolean }>`
   max-width: 70%;
-  padding: 0.75rem 1rem;
-  border-radius: 1rem;
-  align-self: ${props => props.isUser ? 'flex-end' : 'flex-start'};
-  background: ${props => props.isUser ? '#007AFF' : '#E9ECEF'};
-  color: ${props => props.isUser ? 'white' : 'black'};
-`;
-
-const Timestamp = styled.span`
-  font-size: 0.75rem;
-  color: #6c757d;
-  margin-top: 0.25rem;
-  text-align: right;
+  padding: ${({ theme }) => theme.spacing.md};
+  border-radius: ${({ theme }) => theme.spacing.sm};
+  background: ${({ theme, isUser }) => 
+    isUser 
+      ? theme.colors.messageBubble.user.background 
+      : theme.colors.messageBubble.ai.background};
+  color: ${({ theme, isUser }) => 
+    isUser 
+      ? theme.colors.messageBubble.user.text 
+      : theme.colors.messageBubble.ai.text};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 `;
 
 interface MessageListProps {
@@ -33,14 +39,11 @@ export const MessageList: React.FC<MessageListProps> = ({ messages }) => {
   return (
     <MessageContainer>
       {messages.map((message) => (
-        <div key={message.id}>
+        <MessageWrapper key={message.id} isUser={message.sender === 'user'}>
           <MessageBubble isUser={message.sender === 'user'}>
             {message.content}
-            <Timestamp>
-              {new Date(message.timestamp).toLocaleTimeString()}
-            </Timestamp>
           </MessageBubble>
-        </div>
+        </MessageWrapper>
       ))}
     </MessageContainer>
   );

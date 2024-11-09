@@ -21,7 +21,14 @@ const ChatWrapper = styled.div`
 `;
 
 export const ChatInterface = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: '1',
+      content: 'Hello! How can I help you today?',
+      timestamp: new Date().toISOString(),
+      sender: 'ai'
+    }
+  ]);
 
   const handleSendMessage = (content: string) => {
     setMessages([...messages, { 
