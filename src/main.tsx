@@ -12,8 +12,6 @@ if (!rootElement) {
 
 console.log('Creating React root...')
 
-const apiUrl = import.meta.env.VITE_API_URL;
-
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <App />

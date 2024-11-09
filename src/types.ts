@@ -3,5 +3,5 @@ export interface Message {
   id: string;
   content: string;
   timestamp: string;
-  sender: 'user' | 'ai';
+  sender: 'user' | 'ai'; // String literal type
 }

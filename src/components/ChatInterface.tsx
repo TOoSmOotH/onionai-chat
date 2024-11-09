@@ -1,59 +1,43 @@
 // src/components/ChatInterface.tsx
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import { MessageList } from './MessageList';
 import { MessageInput } from './MessageInput';
-
-const ChatContainer = styled.div`
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-`;
+import { Message } from '../types'; // Add Message type import
 
 const MessagesArea = styled.div`
-  background: ${props => props.theme.colors.surface};
-  color: ${props => props.theme.colors.text};
-  border: 1px solid ${props => props.theme.colors.border};
+  background: ${({ theme }) => theme.colors.surface};
+  color: ${({ theme }) => theme.colors.text};
   flex: 1;
-  padding: 20px;
   overflow-y: auto;
-  min-height: 300px;
+  padding: 1rem;
+`;
+
+const ChatWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 500px;
 `;
 
 export const ChatInterface = () => {
-  console.log('ChatInterface rendering'); // Debug log
-
-  const [messages, setMessages] = useState([
-    // Test message to verify rendering
-    {
-      id: '1',
-      content: 'Hello! How can I help you today?',
-      timestamp: new Date().toISOString(),
-      sender: 'ai'
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   const handleSendMessage = (content: string) => {
-    console.log('Sending message:', content); // Debug log
-    const newMessage = {
+    setMessages([...messages, { 
       id: Date.now().toString(),
       content,
       timestamp: new Date().toISOString(),
-      sender: 'user'
-    };
-    setMessages([...messages, newMessage]);
+      sender: 'user' as const
+    }]);
   };
 
   return (
-    <ChatContainer>
+    <ChatWrapper>
       <MessagesArea>
         <MessageList messages={messages} />
       </MessagesArea>
       <MessageInput onSend={handleSendMessage} />
-    </ChatContainer>
+    </ChatWrapper>
   );
 };

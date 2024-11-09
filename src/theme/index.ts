@@ -1,5 +1,7 @@
 // src/theme/index.ts
-export const lightTheme = {
+import { Theme } from './types';
+
+export const lightTheme: Theme = {
   colors: {
     primary: '#007AFF',
     background: '#f5f5f5',
@@ -7,12 +9,12 @@ export const lightTheme = {
     text: '#000000',
     border: '#dee2e6',
     inputBg: '#ffffff',
-    buttonBg: '#007AFF',
     buttonText: '#ffffff'
-  }
+  },
+  isDark: false
 };
 
-export const darkTheme = {
+export const darkTheme: Theme = {
   colors: {
     primary: '#0A84FF',
     background: '#1c1c1e',
@@ -20,7 +22,7 @@ export const darkTheme = {
     text: '#ffffff',
     border: '#3a3a3c',
     inputBg: '#1c1c1e',
-    buttonBg: '#0A84FF',
     buttonText: '#ffffff'
-  }
+  },
+  isDark: true
 };
