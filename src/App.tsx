@@ -4,6 +4,10 @@ import '@aws-amplify/ui-react/styles.css';
 import { ChatInterface } from './components/ChatInterface';
 import { amplifyconfiguration } from './amplifyconfiguration';
 import styled from '@emotion/styled';
+import { Global } from '@emotion/react';
+import { ThemeProvider } from './context/ThemeContext';
+import { globalStyles } from './styles/GlobalStyles';
+import { ThemeToggle } from './components/ThemeToggle';
 
 console.log('App starting...'); // Debug log
 
@@ -19,12 +23,16 @@ function App() {
   console.log('App rendering...'); // Debug log
 
   return (
-    <Container>
-      <h1>OnionAI Chat</h1>
-      <div style={{background: '#fff', padding: '20px', borderRadius: '8px'}}>
-        <ChatInterface />
-      </div>
-    </Container>
+    <ThemeProvider>
+      <Global styles={theme => globalStyles(theme)} />
+      <ThemeToggle />
+      <Container>
+        <h1>OnionAI Chat</h1>
+        <div style={{background: '#fff', padding: '20px', borderRadius: '8px'}}>
+          <ChatInterface />
+        </div>
+      </Container>
+    </ThemeProvider>
   );
 }
 

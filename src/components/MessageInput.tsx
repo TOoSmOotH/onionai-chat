@@ -13,7 +13,9 @@ const InputWrapper = styled.div`
 const Input = styled.input`
   flex: 1;
   padding: 0.75rem 1rem;
-  border: 1px solid #ddd;
+  background: ${props => props.theme.colors.inputBg};
+  color: ${props => props.theme.colors.text};
+  border: 1px solid ${props => props.theme.colors.border};
   border-radius: 8px;
   font-size: 1rem;
   outline: none;
