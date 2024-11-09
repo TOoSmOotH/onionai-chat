@@ -15,9 +15,11 @@ const ChatContainer = styled.div`
 `;
 
 const MessagesArea = styled.div`
+  background: ${props => props.theme.colors.surface};
+  color: ${props => props.theme.colors.text};
+  border: 1px solid ${props => props.theme.colors.border};
   flex: 1;
   padding: 20px;
-  background: #fff;
   overflow-y: auto;
   min-height: 300px;
 `;

@@ -14,7 +14,18 @@ console.log('App starting...'); // Debug log
 const Container = styled.div`
   min-height: 100vh;
   padding: 20px;
-  background: #f5f5f5;
+  background: ${props => props.theme.colors.background};
+  color: ${props => props.theme.colors.text};
+  transition: all 0.2s ease;
+`;
+
+const ChatContainer = styled.div`
+  background: ${props => props.theme.colors.surface};
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px ${props => 
+    props.theme.isDark ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.1)'
+  };
 `;
 
 Amplify.configure(amplifyconfiguration);
@@ -28,9 +39,9 @@ function App() {
       <ThemeToggle />
       <Container>
         <h1>OnionAI Chat</h1>
-        <div style={{background: '#fff', padding: '20px', borderRadius: '8px'}}>
+        <ChatContainer>
           <ChatInterface />
-        </div>
+        </ChatContainer>
       </Container>
     </ThemeProvider>
   );
