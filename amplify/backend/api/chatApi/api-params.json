@@ -1,0 +1,11 @@
+{
+  "paths": {
+    "/chat": {
+      "name": "/chat",
+      "lambdaFunction": "chatFunction",
+      "privacy": {
+        "open": true
+      }
+    }
+  }
+}
