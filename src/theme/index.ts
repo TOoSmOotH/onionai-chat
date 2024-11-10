@@ -26,12 +26,12 @@ export const lightTheme = {
     containerPadding: '2rem'
   },
   spacing: {
-    xs: '0.25rem',
-    sm: '0.5rem',
-    md: '1rem',
-    lg: '1.5rem',
-    xl: '2rem',
-    xxl: '3rem'
+    xs: '0.5rem',    // 8px
+    sm: '1rem',      // 16px
+    md: '1.5rem',    // 24px
+    lg: '2rem',      // 32px
+    xl: '3rem',      // 48px
+    xxl: '6rem'      // 96px - Increased from 4rem
   },
   isDark: false
 };
