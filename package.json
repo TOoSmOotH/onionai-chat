@@ -15,7 +15,8 @@
     "@emotion/styled": "^11.13.0",
     "aws-amplify": "^6.8.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.28.0"
   },
   "devDependencies": {
     "@aws-amplify/backend": "^1.5.0",

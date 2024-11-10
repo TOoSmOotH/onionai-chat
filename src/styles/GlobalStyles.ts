@@ -1,8 +1,8 @@
 // src/styles/GlobalStyles.ts
+/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Theme } from '../theme/types';
 
-export const globalStyles = (theme: Theme) => css`
+export const globalStyles = css`
   * {
     margin: 0;
     padding: 0;
@@ -10,12 +10,11 @@ export const globalStyles = (theme: Theme) => css`
   }
 
   body {
-    font-family: -apple-system, system-ui, sans-serif;
-    background: ${theme.colors.background};
-    color: ${theme.colors.text};
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
-  input, button {
-    font-family: inherit;
+  html, body, #root {
+    height: 100%;
   }
 `;

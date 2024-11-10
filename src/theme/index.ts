@@ -1,7 +1,6 @@
 // src/theme/index.ts
-import { Theme } from './types';
 
-export const lightTheme: Theme = {
+export const lightTheme = {
   colors: {
     primary: '#007AFF',
     background: '#f5f5f5',
@@ -22,8 +21,8 @@ export const lightTheme: Theme = {
     }
   },
   layout: {
-    maxWidth: '960px', // Reduced from 1200px
-    padding: '0 2rem',
+    maxWidth: '960px',
+    padding: '1rem',
     containerPadding: '2rem'
   },
   spacing: {
@@ -37,9 +36,10 @@ export const lightTheme: Theme = {
   isDark: false
 };
 
-export const darkTheme: Theme = {
+export const darkTheme = {
   ...lightTheme,
   colors: {
+    ...lightTheme.colors,
     primary: '#0A84FF',
     background: '#1c1c1e',
     surface: '#2c2c2e',
@@ -48,18 +48,8 @@ export const darkTheme: Theme = {
     inputBg: '#1c1c1e',
     buttonText: '#ffffff',
     messageBubble: {
-      user: {
-        background: '#0A84FF',
-        text: '#ffffff'
-      },
-      ai: {
-        background: '#E8E8E8',
-        text: '#333333'
-      }
+      ...lightTheme.colors.messageBubble
     }
   },
   isDark: true
 };
-
-// Re-export types
-export type { Theme } from './types';

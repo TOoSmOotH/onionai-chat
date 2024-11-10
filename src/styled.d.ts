@@ -11,6 +11,29 @@ declare module '@emotion/react' {
       border: string;
       inputBg: string;
       buttonText: string;
+      messageBubble: {
+        user: {
+          background: string;
+          text: string;
+        };
+        ai: {
+          background: string;
+          text: string;
+        };
+      };
+    };
+    layout: {
+      maxWidth: string;
+      padding: string;
+      containerPadding: string;
+    };
+    spacing: {
+      xs: string;
+      sm: string;
+      md: string;
+      lg: string;
+      xl: string;
+      xxl: string;
     };
     isDark: boolean;
   }

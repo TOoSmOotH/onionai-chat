@@ -8,24 +8,29 @@ import { ThemeProvider } from './context/ThemeContext';
 import { globalStyles } from './styles/GlobalStyles';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { Container } from './styles/shared';
+import { AuthProvider } from './context/AuthContext';
 
-const Content = styled.main`
-  flex: 1;
+const Container = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: ${({ theme }) => theme.colors.background};
 `;
 
 Amplify.configure(amplifyconfiguration);
 
 function App() {
   return (
-    <ThemeProvider>
-      <Global styles={globalStyles} />
-      <Container>
-        <Header />
-        <ChatInterface />
-        <Footer />
-      </Container>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <Global styles={globalStyles} />
+        <Container>
+          <Header />
+          <ChatInterface />
+          <Footer />
+        </Container>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 
